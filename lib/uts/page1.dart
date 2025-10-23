@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/page2.dart';
+import 'package:flutter_application_1/page3.dart';
+import 'package:uts_arpan_2410910040028/uts/page2.dart';
+import 'package:uts_arpan_2410910040028/uts/page3.dart';
 
 void main() {
   runApp(const MaterialApp(debugShowCheckedModeBanner: false, home: Page1()));
@@ -25,7 +29,6 @@ class _Page1State extends State<Page1> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // ===== Logo dan Judul =====
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -44,7 +47,7 @@ class _Page1State extends State<Page1> {
 
             const SizedBox(height: 30),
 
-            // ===== Sign In =====
+            // Sign In
             const Padding(
               padding: EdgeInsets.all(10),
               child: Column(
@@ -65,7 +68,7 @@ class _Page1State extends State<Page1> {
 
             const SizedBox(height: 10),
 
-            // ===== Email =====
+            // Email
             const Text("Email", style: TextStyle(fontWeight: FontWeight.bold)),
             const SizedBox(height: 5),
             TextField(
@@ -79,7 +82,7 @@ class _Page1State extends State<Page1> {
 
             const SizedBox(height: 20),
 
-            // ===== Password =====
+            // Password
             const Text(
               "Password",
               style: TextStyle(fontWeight: FontWeight.bold),
@@ -111,7 +114,7 @@ class _Page1State extends State<Page1> {
 
             const SizedBox(height: 10),
 
-            // ===== Keep me logged in =====
+            // Keep me logged in
             Row(
               children: [
                 Checkbox(
@@ -129,7 +132,7 @@ class _Page1State extends State<Page1> {
 
             const SizedBox(height: 20),
 
-            // ===== Button Login =====
+            // Button Login
             SizedBox(
               width: double.infinity,
               height: 45,
@@ -141,6 +144,7 @@ class _Page1State extends State<Page1> {
                   ),
                 ),
                 onPressed: () {
+                  // Navigasi ke halaman Page3
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const Page3()),
@@ -155,7 +159,7 @@ class _Page1State extends State<Page1> {
 
             const SizedBox(height: 15),
 
-            // ===== Belum punya akun? Daftar di sini =====
+            // Belum punya akun?
             Center(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -167,6 +171,7 @@ class _Page1State extends State<Page1> {
                   const SizedBox(width: 5),
                   GestureDetector(
                     onTap: () {
+                      // Navigasi ke halaman Daftar Activity (Page2)
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => const Page2()),
