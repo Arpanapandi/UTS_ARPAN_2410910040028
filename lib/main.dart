@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uts_arpan_2410910040028/uts/page1.dart';
 
 void main(List<String> args) {
   runApp(MyApp());
@@ -9,6 +10,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: );
+    return MaterialApp(home: Page1());
   }
 }
