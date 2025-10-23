@@ -172,7 +172,7 @@ class _Page2State extends State<Page2> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const ),
+                    MaterialPageRoute(builder: (context) => const Page3()),
                   );
                 },
                 child: const Text(

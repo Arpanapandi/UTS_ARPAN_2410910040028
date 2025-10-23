@@ -1,22 +1,60 @@
 import 'package:flutter/material.dart';
-import 'package:uts_arpan_2410910040028/uts/page2.dart';
 import 'package:uts_arpan_2410910040028/uts/page3.dart';
 
-void main() {
-  runApp(const MaterialApp(debugShowCheckedModeBanner: false, home: Page1()));
-}
-
-class Page1 extends StatefulWidget {
-  const Page1({super.key});
+class Page2 extends StatefulWidget {
+  const Page2({super.key});
 
   @override
-  State<Page1> createState() => _Page1State();
+  State<Page2> createState() => _Page2State();
 }
 
-class _Page1State extends State<Page1> {
-  bool _keepLoggedIn = false;
+class _Page2State extends State<Page2> {
   bool _obscurePassword = true;
+  bool _obscureConfirm = true;
+
+  // Controller untuk password dan konfirmasi password
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmController = TextEditingController();
+
+  void _register() {
+    String password = _passwordController.text.trim();
+    String confirm = _confirmController.text.trim();
+
+    // Validasi input kosong
+    if (password.isEmpty || confirm.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("Password tidak boleh kosong!"),
+          backgroundColor: Colors.red,
+        ),
+      );
+      return;
+    }
+
+    // Validasi password tidak cocok
+    if (password != confirm) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("Password dan konfirmasi password tidak cocok!"),
+          backgroundColor: Colors.red,
+        ),
+      );
+      return;
+    }
+
+    // Jika cocok, lanjut ke Page3
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text("Pendaftaran berhasil!"),
+        backgroundColor: Colors.green,
+      ),
+    );
+
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => const Page3()),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +65,7 @@ class _Page1State extends State<Page1> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // Logo dan Judul
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -43,55 +82,77 @@ class _Page1State extends State<Page1> {
               ],
             ),
 
-            const SizedBox(height: 30),
+            const SizedBox(height: 20),
 
-            // Sign In
-            const Padding(
-              padding: EdgeInsets.all(10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Sign In",
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(height: 5),
-                  Text(
-                    "Enter your ID and password to sign in!",
-                    style: TextStyle(color: Colors.grey),
-                  ),
-                ],
-              ),
+            const Text(
+              "Daftar",
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 5),
+            const Text(
+              "Silahkan isi Data Pribadi Anda",
+              style: TextStyle(color: Colors.grey),
             ),
 
-            const SizedBox(height: 10),
+            const SizedBox(height: 20),
 
-            // Email
-            const Text("Email", style: TextStyle(fontWeight: FontWeight.bold)),
+            // Nama
+            const Text(
+              "Nama Lengkap",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
             const SizedBox(height: 5),
             TextField(
               decoration: InputDecoration(
-                hintText: "Masukkan Email",
+                hintText: "Nama Lengkap",
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),
               ),
             ),
 
-            const SizedBox(height: 20),
+            const SizedBox(height: 15),
+
+            // Alamat
+            const Text("Alamat", style: TextStyle(fontWeight: FontWeight.bold)),
+            const SizedBox(height: 5),
+            TextField(
+              decoration: InputDecoration(
+                hintText: "Alamat",
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 15),
+
+            // Username
+            const Text(
+              "Username",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 5),
+            TextField(
+              decoration: InputDecoration(
+                hintText: "Username",
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 15),
 
             // Password
             const Text(
-              "Password",
+              "Password*",
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 5),
             TextField(
               controller: _passwordController,
               obscureText: _obscurePassword,
-              onChanged: (value) {
-                print("Password: $value");
-              },
               decoration: InputDecoration(
                 hintText: "Min. 8 characters",
                 border: OutlineInputBorder(
@@ -110,27 +171,38 @@ class _Page1State extends State<Page1> {
               ),
             ),
 
-            const SizedBox(height: 10),
+            const SizedBox(height: 15),
 
-            // Keep me logged in
-            Row(
-              children: [
-                Checkbox(
-                  value: _keepLoggedIn,
-                  onChanged: (value) {
+            // Konfirmasi Password
+            const Text(
+              "Konfirmasi Password*",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 5),
+            TextField(
+              controller: _confirmController,
+              obscureText: _obscureConfirm,
+              decoration: InputDecoration(
+                hintText: "Min. 8 characters",
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    _obscureConfirm ? Icons.visibility_off : Icons.visibility,
+                  ),
+                  onPressed: () {
                     setState(() {
-                      _keepLoggedIn = value!;
+                      _obscureConfirm = !_obscureConfirm;
                     });
                   },
-                  activeColor: const Color.fromARGB(255, 2, 70, 93),
                 ),
-                const Text("Keep me logged in", style: TextStyle(fontSize: 15)),
-              ],
+              ),
             ),
 
-            const SizedBox(height: 20),
+            const SizedBox(height: 25),
 
-            // Button Login
+            // Tombol Daftar
             SizedBox(
               width: double.infinity,
               height: 45,
@@ -141,15 +213,9 @@ class _Page1State extends State<Page1> {
                     borderRadius: BorderRadius.circular(8),
                   ),
                 ),
-                onPressed: () {
-                  // Navigasi ke halaman Page3
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const Page3()),
-                  );
-                },
+                onPressed: _register,
                 child: const Text(
-                  "Login",
+                  "Daftar",
                   style: TextStyle(fontSize: 18, color: Colors.white),
                 ),
               ),
@@ -157,26 +223,22 @@ class _Page1State extends State<Page1> {
 
             const SizedBox(height: 15),
 
-            // Belum punya akun?
+            // Sudah punya akun? Login di sini
             Center(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text(
-                    "Belum punya akun?",
+                    "Sudah punya akun?",
                     style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
                   ),
                   const SizedBox(width: 5),
                   GestureDetector(
                     onTap: () {
-                      // Navigasi ke halaman Daftar Activity (Page2)
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => const Page2()),
-                      );
+                      Navigator.pop(context);
                     },
                     child: const Text(
-                      "Daftar di sini",
+                      "Login di sini",
                       style: TextStyle(
                         color: Colors.blue,
                         fontWeight: FontWeight.bold,
