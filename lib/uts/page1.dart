@@ -15,11 +15,11 @@ class Page1 extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset('gambar/logo.png', width: 100, height: 100),
+                Image.asset('gambar/logo.png', width: 150, height: 100),
                 Text(
                   "LKS\nMART",
                   style: TextStyle(
-                    fontSize: 50,
+                    fontSize: 40,
                     fontWeight: FontWeight.bold,
                     color: const Color.fromARGB(255, 2, 70, 93),
                   ),
@@ -28,15 +28,36 @@ class Page1 extends StatelessWidget {
             ),
           ),
 
-          Padding(padding: 
-          const EdgeInsets.all(10),
-          child: Row(
-            children: [
-              Text("Sign in", style: TextStyle(fontSize: 20,
-              fontWeight: FontWeight.bold)),
-              Text("Enter your ID and password to sign in!"),
-            ],
-          ),),
+          Padding(
+            padding: const EdgeInsets.all(10),
+            child: Row(
+              children: [
+                Text(
+                  "Sign in",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                Text("Enter your ID and password to sign in!"),
+              ],
+            ),
+          ),
+
+          Text("Email"),
+          TextField(
+            decoration: InputDecoration(
+              hintText: "Masukan Email",
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+              )
+            ),
+          ),
+
+          Text("Password"),
+          TextField(
+            decoration: InputDecoration(
+              suffixIcon: IconButton(),
+              hintText: "Min. 8 characters",
+            )),
+
         ],
       ),
     );
