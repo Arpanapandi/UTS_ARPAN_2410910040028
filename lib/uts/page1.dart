@@ -9,9 +9,21 @@ class Page1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        
-      ),
+        body: SingleChildScrollView(
+          padding: const EdgeInsets.all(20),
+          child: Row(
+            children: [
+              Image.asset('gambar/logo.png',
+              width: 60,
+              height: 60
+              ),
+              Text("LKS\nMART"),
+            ],
+            
+          ),
+          
+
+        ),
     );
   }
 }
