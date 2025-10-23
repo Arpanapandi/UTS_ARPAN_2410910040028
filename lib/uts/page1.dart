@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/page2.dart';
-import 'package:flutter_application_1/page3.dart';
 import 'package:uts_arpan_2410910040028/uts/page2.dart';
 import 'package:uts_arpan_2410910040028/uts/page3.dart';
 
