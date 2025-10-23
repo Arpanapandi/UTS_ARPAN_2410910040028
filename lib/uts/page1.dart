@@ -25,6 +25,7 @@ class _Page1State extends State<Page1> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // ===== Logo dan Judul =====
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -43,13 +44,15 @@ class _Page1State extends State<Page1> {
 
             const SizedBox(height: 30),
 
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: Row(
-                children: const [
+            // ===== Sign In =====
+            const Padding(
+              padding: EdgeInsets.all(10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
                   Text(
-                    "Sign in ",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    "Sign In",
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 5),
                   Text(
@@ -62,6 +65,7 @@ class _Page1State extends State<Page1> {
 
             const SizedBox(height: 10),
 
+            // ===== Email =====
             const Text("Email", style: TextStyle(fontWeight: FontWeight.bold)),
             const SizedBox(height: 5),
             TextField(
@@ -75,6 +79,7 @@ class _Page1State extends State<Page1> {
 
             const SizedBox(height: 20),
 
+            // ===== Password =====
             const Text(
               "Password",
               style: TextStyle(fontWeight: FontWeight.bold),
@@ -106,6 +111,7 @@ class _Page1State extends State<Page1> {
 
             const SizedBox(height: 10),
 
+            // ===== Keep me logged in =====
             Row(
               children: [
                 Checkbox(
@@ -123,7 +129,63 @@ class _Page1State extends State<Page1> {
 
             const SizedBox(height: 20),
 
-           
+            // ===== Button Login =====
+            SizedBox(
+              width: double.infinity,
+              height: 45,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(255, 2, 70, 93),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Page3()),
+                  );
+                },
+                child: const Text(
+                  "Login",
+                  style: TextStyle(fontSize: 18, color: Colors.white),
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 15),
+
+            // ===== Belum punya akun? Daftar di sini =====
+            Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    "Belum punya akun?",
+                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+                  ),
+                  const SizedBox(width: 5),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const Page2()),
+                      );
+                    },
+                    child: const Text(
+                      "Daftar di sini",
+                      style: TextStyle(
+                        color: Colors.blue,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
